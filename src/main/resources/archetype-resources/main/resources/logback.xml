@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+  <appender name="default" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${project.artifactId}-application.log</file>
+    <encoder>
+      <pattern>%-4d{dd MMM yyyy HH:mm:ss.SSS} [%t] %-5p %c{5} - %X %m %rootException{11}%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <maxIndex>20</maxIndex>
+      <FileNamePattern>${project.artifactId}-application.log</FileNamePattern>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>20MB</MaxFileSize>
+    </triggeringPolicy>
+  </appender>
+  <root level="${log.level}">
+    <appender-ref ref="default"/>
+  </root>
+</configuration>
